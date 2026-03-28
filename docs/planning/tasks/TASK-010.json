@@ -1,0 +1,24 @@
+{
+  "id": "TASK-010",
+  "title": "Implement win highlighting in both views",
+  "description": "Add visual highlighting for winning cells in both flat grids and 3D visualization.",
+  "feature_ref": "F005",
+  "task_type": "frontend",
+  "complexity": {
+    "score": 4,
+    "factors": {
+      "files_affected": 3,
+      "estimated_lines": 60,
+      "new_dependencies": 0,
+      "risk_flags": []
+    }
+  },
+  "dependencies": ["TASK-007", "TASK-009"],
+  "acceptance_criteria": [
+    "Winning cells highlighted with distinct color/effect in flat grids",
+    "Winning cells highlighted in 3D view",
+    "Non-winning cells dimmed or de-emphasized",
+    "Highlighting applied only when game is won"
+  ],
+  "suggested_agent": "frontend:developer"
+}

@@ -1,0 +1,305 @@
+{
+  "project": "TicTacFor",
+  "feature": "UI Overhaul - Button Enhancement & Layout Fixes",
+  "totalTasks": 8,
+  "totalHours": 35,
+  "totalComplexity": 35,
+  "sprints": 2,
+  "maxParallelTracks": 3,
+  "criticalPathHours": 17,
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "title": "Update Design System CSS Variables for Enhanced Button Styling",
+      "type": "frontend",
+      "description": "Add new CSS variables to design-system.css to support enhanced button styling with higher contrast borders and touch-friendly sizing. This establishes the foundation for improved button visibility and accessibility.",
+      "priority": "high",
+      "complexity": 3,
+      "estimatedHours": 3,
+      "sprint": 1,
+      "status": "pending",
+      "dependencies": [],
+      "blocks": ["TASK-002", "TASK-005"],
+      "files": ["src/styles/design-system.css"],
+      "acceptanceCriteria": [
+        "New CSS variable --button-min-size: 48px added to design-system.css",
+        "New CSS variable --button-border-width: 3px added (increased from 2px)",
+        "New CSS variable --button-padding-x: 1.5rem added",
+        "New CSS variable --button-padding-y: 0.75rem added",
+        "Enhanced neon border variables with higher opacity values",
+        "All new variables follow existing naming conventions",
+        "No breaking changes to existing styles"
+      ]
+    },
+    {
+      "id": "TASK-002",
+      "title": "Enhance NeonButton Component for Touch-Friendly Sizing and Contrast",
+      "type": "frontend",
+      "description": "Update NeonButton component to use new design system variables for improved visibility and touch accessibility. Increase minimum button size to 48x48px, add thicker borders, and enhance visual contrast.",
+      "priority": "high",
+      "complexity": 5,
+      "estimatedHours": 5,
+      "sprint": 1,
+      "status": "pending",
+      "dependencies": ["TASK-001"],
+      "blocks": ["TASK-003", "TASK-004"],
+      "files": ["src/components/ui/NeonButton.tsx", "src/styles/effects.css"],
+      "acceptanceCriteria": [
+        "Button minimum size is 48x48px (touch-friendly)",
+        "Replace px-6 py-3 with new CSS variables (--button-padding-x, --button-padding-y)",
+        "Border width increased to 3px using --button-border-width",
+        "Higher contrast between button states (default, hover, active, disabled)",
+        "Neon glow effect is more prominent and visible",
+        "All color variants (cyan, magenta, purple) have enhanced visibility",
+        "Ripple effect still works correctly with new sizing",
+        "Disabled state remains clearly distinguishable",
+        "TypeScript types remain unchanged",
+        "All existing props work as before"
+      ]
+    },
+    {
+      "id": "TASK-003",
+      "title": "Apply Consistent Spacing to GameInfo Component Layout",
+      "type": "frontend",
+      "description": "Refactor GameInfo component to use design system spacing variables for consistent padding, alignment, and visual hierarchy. Improve organization of game controls and status information.",
+      "priority": "medium",
+      "complexity": 4,
+      "estimatedHours": 4,
+      "sprint": 1,
+      "status": "pending",
+      "dependencies": ["TASK-002"],
+      "blocks": [],
+      "files": ["src/components/GameInfo.tsx"],
+      "acceptanceCriteria": [
+        "Replace hardcoded spacing values with CSS variables (--spacing-*)",
+        "Consistent padding throughout component using design system values",
+        "Proper alignment of player indicator, status text, and reset button",
+        "Responsive spacing that works on mobile and desktop",
+        "Winner/draw state displays maintain visual hierarchy",
+        "All animations continue to work smoothly",
+        "Component remains within GlassCard boundaries",
+        "No layout shifts between game states"
+      ]
+    },
+    {
+      "id": "TASK-004",
+      "title": "Apply Consistent Spacing to MultiplayerGameInfo Component Layout",
+      "type": "frontend",
+      "description": "Refactor MultiplayerGameInfo component to use design system spacing variables. Ensure consistent layout organization across all multiplayer game states (waiting, playing, spectating, disconnected).",
+      "priority": "medium",
+      "complexity": 5,
+      "estimatedHours": 5,
+      "sprint": 1,
+      "status": "pending",
+      "dependencies": ["TASK-002"],
+      "blocks": [],
+      "files": ["src/components/MultiplayerGameInfo.tsx"],
+      "acceptanceCriteria": [
+        "Replace hardcoded spacing with CSS variables throughout component",
+        "Consistent padding in all game state cards (opponent disconnected, turn indicator, game over)",
+        "Proper alignment of status badges, player indicators, and buttons",
+        "Responsive spacing for mobile and desktop",
+        "Disconnection warning maintains visual prominence with new spacing",
+        "Spectator mode layout uses consistent spacing",
+        "All animation states (victory, defeat, draw) display correctly",
+        "No layout shifts between states",
+        "Turn indicator arrow animation works with new spacing"
+      ]
+    },
+    {
+      "id": "TASK-005",
+      "title": "Fix SinglePlayerPage Layout Spacing and Padding",
+      "type": "frontend",
+      "description": "Optimize SinglePlayerPage layout to use design system spacing variables. Replace excessive top padding (pt-48) with organized, consistent spacing that properly accommodates the fixed header.",
+      "priority": "high",
+      "complexity": 4,
+      "estimatedHours": 4,
+      "sprint": 1,
+      "status": "pending",
+      "dependencies": ["TASK-001"],
+      "blocks": [],
+      "files": ["src/pages/SinglePlayerPage.tsx"],
+      "acceptanceCriteria": [
+        "Replace pt-48 with calculated header height + design system spacing",
+        "Use CSS variables for all spacing values",
+        "No overlap between fixed header and main content",
+        "Consistent gap between left (flat boards) and right (3D view) panels",
+        "Responsive padding that works on all screen sizes",
+        "Smooth scrolling in flat boards panel",
+        "No layout shifts when game state changes",
+        "Back button, title, and game info remain properly positioned in fixed header"
+      ]
+    },
+    {
+      "id": "TASK-006",
+      "title": "Fix HomePage Grid Layout to Prevent Section Overlap",
+      "type": "frontend",
+      "description": "Change HomePage game mode cards from two-column grid to single-column stack layout on ALL screen sizes to prevent overlapping between SINGLE PLAYER and MULTIPLAYER sections.",
+      "priority": "critical",
+      "complexity": 2,
+      "estimatedHours": 2,
+      "sprint": 1,
+      "status": "pending",
+      "dependencies": [],
+      "blocks": ["TASK-007"],
+      "files": ["src/pages/HomePage.tsx"],
+      "acceptanceCriteria": [
+        "Replace 'grid grid-cols-1 md:grid-cols-2 gap-8' with 'grid grid-cols-1 gap-12'",
+        "Single column layout on all screen sizes (mobile, tablet, desktop)",
+        "No overlap between SINGLE PLAYER and MULTIPLAYER cards",
+        "Increased gap (gap-12 = 3rem) for better visual separation",
+        "Cards maintain proper glassmorphism styling",
+        "Animations still work (float, card variants)",
+        "Cards remain centered on page",
+        "Responsive design maintains consistent spacing"
+      ]
+    },
+    {
+      "id": "TASK-007",
+      "title": "Create Accordion Component for How To Play Section",
+      "type": "frontend",
+      "description": "Build a reusable Accordion component using Framer Motion for smooth expand/collapse animations. Component will support collapsed-by-default state and programmatic control via button trigger.",
+      "priority": "medium",
+      "complexity": 6,
+      "estimatedHours": 6,
+      "sprint": 2,
+      "status": "pending",
+      "dependencies": ["TASK-006"],
+      "blocks": ["TASK-008"],
+      "files": ["src/components/ui/Accordion.tsx", "src/components/ui/index.ts"],
+      "acceptanceCriteria": [
+        "Create Accordion.tsx component in src/components/ui/",
+        "Implements expand/collapse functionality with Framer Motion",
+        "Supports collapsed-by-default prop",
+        "Smooth height animation using AnimatePresence",
+        "Accepts trigger button as prop or uses default",
+        "Glassmorphism styling consistent with design system",
+        "Accessible keyboard navigation (Enter/Space to toggle)",
+        "ARIA attributes for screen readers (aria-expanded, aria-controls)",
+        "TypeScript interface with proper typing",
+        "Exports from src/components/ui/index.ts"
+      ]
+    },
+    {
+      "id": "TASK-008",
+      "title": "Refactor HomePage How To Play Section to Use Accordion",
+      "type": "frontend",
+      "description": "Convert the existing How To Play section on HomePage to use the new Accordion component. Add a 'Show Rules' button that controls the accordion, with content collapsed by default.",
+      "priority": "medium",
+      "complexity": 4,
+      "estimatedHours": 4,
+      "sprint": 2,
+      "status": "pending",
+      "dependencies": ["TASK-007"],
+      "blocks": [],
+      "files": ["src/pages/HomePage.tsx"],
+      "acceptanceCriteria": [
+        "How To Play section uses Accordion component",
+        "Content is collapsed by default on page load",
+        "NeonButton with 'SHOW RULES' / 'HIDE RULES' text controls accordion",
+        "Button text updates based on accordion state (open/closed)",
+        "Smooth animation when expanding/collapsing",
+        "All existing content (4 rule sections) displays correctly when expanded",
+        "Glassmorphism styling maintained",
+        "Button uses appropriate neon color (purple to match section title)",
+        "Responsive layout works on all screen sizes",
+        "Animation doesn't cause layout shift in page"
+      ]
+    }
+  ],
+  "dependencyGraph": {
+    "chains": [
+      {
+        "name": "Button Enhancement Track",
+        "path": ["TASK-001", "TASK-002", "TASK-003"],
+        "hours": 12,
+        "complexity": 12,
+        "parallelizable": false
+      },
+      {
+        "name": "Button Enhancement Track (Alt)",
+        "path": ["TASK-001", "TASK-002", "TASK-004"],
+        "hours": 13,
+        "complexity": 13,
+        "parallelizable": false
+      },
+      {
+        "name": "Layout Fix Track",
+        "path": ["TASK-001", "TASK-005"],
+        "hours": 7,
+        "complexity": 7,
+        "parallelizable": true,
+        "parallelWith": ["Button Enhancement Track"]
+      },
+      {
+        "name": "Homepage Enhancement Track",
+        "path": ["TASK-006", "TASK-007", "TASK-008"],
+        "hours": 12,
+        "complexity": 12,
+        "parallelizable": true,
+        "parallelWith": ["Button Enhancement Track", "Layout Fix Track"]
+      }
+    ],
+    "criticalPath": {
+      "tasks": ["TASK-001", "TASK-002", "TASK-004"],
+      "totalHours": 17,
+      "description": "Longest dependency chain determining minimum project duration"
+    }
+  },
+  "sprintBreakdown": {
+    "sprint1": {
+      "name": "Foundation & Critical Fixes",
+      "tasks": ["TASK-001", "TASK-002", "TASK-003", "TASK-004", "TASK-005", "TASK-006"],
+      "totalHours": 25,
+      "totalComplexity": 25,
+      "focus": "Fix critical layout issues and establish design system foundation"
+    },
+    "sprint2": {
+      "name": "Polish & UX Enhancement",
+      "tasks": ["TASK-007", "TASK-008"],
+      "totalHours": 10,
+      "totalComplexity": 10,
+      "focus": "Add accordion feature for better content organization"
+    }
+  },
+  "parallelizationStrategy": {
+    "maxParallelTracks": 3,
+    "optimalDeveloperCount": 2,
+    "estimatedWallClockTime": {
+      "sequential": "35 hours (4.4 days)",
+      "with2Developers": "23 hours (2.9 days)",
+      "with3Developers": "20 hours (2.5 days)"
+    },
+    "recommendations": [
+      "Start TASK-001 and TASK-006 in parallel on Day 1",
+      "After TASK-001 completes, run TASK-002 and TASK-005 in parallel",
+      "After TASK-002 completes, run TASK-003 and TASK-004 in parallel",
+      "Complete Sprint 1 before starting Sprint 2",
+      "TASK-007 and TASK-008 must run sequentially in Sprint 2"
+    ]
+  },
+  "riskAnalysis": {
+    "highRiskTasks": ["TASK-002"],
+    "mediumRiskTasks": ["TASK-003", "TASK-004", "TASK-005", "TASK-007"],
+    "lowRiskTasks": ["TASK-001", "TASK-006", "TASK-008"],
+    "criticalBottlenecks": [
+      {
+        "task": "TASK-001",
+        "impact": "Blocks 2 major tracks (4 downstream tasks)",
+        "mitigation": "Prioritize completion, thorough validation before dependent tasks"
+      },
+      {
+        "task": "TASK-002",
+        "impact": "Affects all buttons site-wide",
+        "mitigation": "Comprehensive visual regression testing"
+      }
+    ]
+  },
+  "testingRequirements": {
+    "visualRegression": ["TASK-002", "TASK-003", "TASK-004", "TASK-005", "TASK-006"],
+    "accessibility": ["TASK-002", "TASK-007"],
+    "responsiveTesting": ["TASK-002", "TASK-003", "TASK-004", "TASK-005", "TASK-006", "TASK-008"],
+    "animationTesting": ["TASK-002", "TASK-007", "TASK-008"],
+    "crossBrowser": "All tasks"
+  }
+}

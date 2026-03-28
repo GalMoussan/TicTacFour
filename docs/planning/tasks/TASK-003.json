@@ -1,0 +1,34 @@
+{
+  "id": "TASK-003",
+  "title": "Apply Consistent Spacing to GameInfo Component Layout",
+  "type": "frontend",
+  "description": "Refactor GameInfo component to use design system spacing variables for consistent padding, alignment, and visual hierarchy. Improve organization of game controls and status information.",
+  "priority": "medium",
+  "complexity": 4,
+  "estimatedHours": 4,
+  "sprint": 1,
+  "status": "pending",
+  "dependencies": ["TASK-002"],
+  "blocks": [],
+  "acceptanceCriteria": [
+    "Replace hardcoded spacing values with CSS variables (--spacing-*)",
+    "Consistent padding throughout component using design system values",
+    "Proper alignment of player indicator, status text, and reset button",
+    "Responsive spacing that works on mobile and desktop",
+    "Winner/draw state displays maintain visual hierarchy",
+    "All animations continue to work smoothly",
+    "Component remains within GlassCard boundaries",
+    "No layout shifts between game states"
+  ],
+  "technicalNotes": [
+    "Use --spacing-sm (0.5rem), --spacing-md (1rem), --spacing-lg (1.5rem), --spacing-xl (2rem) from design-system.css",
+    "Review flex gap values for consistency",
+    "Ensure player indicator circle sizing is proportional",
+    "Test trophy and draw emoji animations with new spacing"
+  ],
+  "files": [
+    "src/components/GameInfo.tsx"
+  ],
+  "testingStrategy": "Visual regression tests for all game states (active, winner X, winner O, draw). Responsive tests on mobile, tablet, and desktop viewports.",
+  "rollbackPlan": "Revert to previous hardcoded spacing if layout breaks"
+}

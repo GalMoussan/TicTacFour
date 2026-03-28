@@ -1,0 +1,35 @@
+{
+  "id": "TASK-005",
+  "title": "Fix SinglePlayerPage Layout Spacing and Padding",
+  "type": "frontend",
+  "description": "Optimize SinglePlayerPage layout to use design system spacing variables. Replace excessive top padding (pt-48) with organized, consistent spacing that properly accommodates the fixed header.",
+  "priority": "high",
+  "complexity": 4,
+  "estimatedHours": 4,
+  "sprint": 1,
+  "status": "pending",
+  "dependencies": ["TASK-001"],
+  "blocks": [],
+  "acceptanceCriteria": [
+    "Replace pt-48 with calculated header height + design system spacing",
+    "Use CSS variables for all spacing values",
+    "No overlap between fixed header and main content",
+    "Consistent gap between left (flat boards) and right (3D view) panels",
+    "Responsive padding that works on all screen sizes",
+    "Smooth scrolling in flat boards panel",
+    "No layout shifts when game state changes",
+    "Back button, title, and game info remain properly positioned in fixed header"
+  ],
+  "technicalNotes": [
+    "Calculate actual header height instead of using arbitrary pt-48",
+    "Consider using calc() with CSS variables for header offset",
+    "Test with different game states to ensure consistent spacing",
+    "Verify overflow behavior in both panels",
+    "Ensure 3D canvas doesn't get cut off"
+  ],
+  "files": [
+    "src/pages/SinglePlayerPage.tsx"
+  ],
+  "testingStrategy": "Visual tests on multiple viewport sizes. Test scrolling behavior. Verify header remains fixed during scroll. Test with all game states.",
+  "rollbackPlan": "Revert to pt-48 if calculated spacing causes layout issues"
+}

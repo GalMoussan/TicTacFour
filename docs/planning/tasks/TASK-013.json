@@ -1,0 +1,27 @@
+{
+  "id": "TASK-013",
+  "title": "Write unit tests for game logic",
+  "description": "Create comprehensive tests for win detection across all 76 lines and game state management.",
+  "feature_ref": "F004",
+  "task_type": "testing",
+  "complexity": {
+    "score": 5,
+    "factors": {
+      "files_affected": 2,
+      "estimated_lines": 200,
+      "new_dependencies": 1,
+      "risk_flags": ["Must test all 76 winning line scenarios"]
+    }
+  },
+  "dependencies": ["TASK-004"],
+  "acceptance_criteria": [
+    "Tests for X-axis wins (16 cases)",
+    "Tests for Y-axis wins (16 cases)",
+    "Tests for Z-axis wins (16 cases)",
+    "Tests for face diagonal wins (24 cases)",
+    "Tests for space diagonal wins (4 cases)",
+    "Tests for draw detection",
+    "Tests for invalid move handling"
+  ],
+  "suggested_agent": "testing:unit-test-writer-typescript"
+}

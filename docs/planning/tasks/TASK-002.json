@@ -1,0 +1,38 @@
+{
+  "id": "TASK-002",
+  "title": "Enhance NeonButton Component for Touch-Friendly Sizing and Contrast",
+  "type": "frontend",
+  "description": "Update NeonButton component to use new design system variables for improved visibility and touch accessibility. Increase minimum button size to 48x48px, add thicker borders, and enhance visual contrast.",
+  "priority": "high",
+  "complexity": 5,
+  "estimatedHours": 5,
+  "sprint": 1,
+  "status": "pending",
+  "dependencies": ["TASK-001"],
+  "blocks": ["TASK-003", "TASK-004"],
+  "acceptanceCriteria": [
+    "Button minimum size is 48x48px (touch-friendly)",
+    "Replace px-6 py-3 with new CSS variables (--button-padding-x, --button-padding-y)",
+    "Border width increased to 3px using --button-border-width",
+    "Higher contrast between button states (default, hover, active, disabled)",
+    "Neon glow effect is more prominent and visible",
+    "All color variants (cyan, magenta, purple) have enhanced visibility",
+    "Ripple effect still works correctly with new sizing",
+    "Disabled state remains clearly distinguishable",
+    "TypeScript types remain unchanged",
+    "All existing props work as before"
+  ],
+  "technicalNotes": [
+    "Update className string to use new CSS variables",
+    "Enhance neon-border-* classes in effects.css if needed",
+    "Test on mobile devices for touch target size",
+    "Ensure accessible color contrast ratios (WCAG AA minimum)",
+    "Maintain existing animation and transition behaviors"
+  ],
+  "files": [
+    "src/components/ui/NeonButton.tsx",
+    "src/styles/effects.css"
+  ],
+  "testingStrategy": "Unit tests: verify all props work correctly. Visual tests: verify sizing on mobile and desktop. Accessibility tests: verify touch targets and color contrast.",
+  "rollbackPlan": "Revert to previous className values if sizing breaks layouts"
+}

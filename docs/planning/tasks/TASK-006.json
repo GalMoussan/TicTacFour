@@ -1,0 +1,35 @@
+{
+  "id": "TASK-006",
+  "title": "Fix HomePage Grid Layout to Prevent Section Overlap",
+  "type": "frontend",
+  "description": "Change HomePage game mode cards from two-column grid to single-column stack layout on ALL screen sizes to prevent overlapping between SINGLE PLAYER and MULTIPLAYER sections.",
+  "priority": "critical",
+  "complexity": 2,
+  "estimatedHours": 2,
+  "sprint": 1,
+  "status": "pending",
+  "dependencies": [],
+  "blocks": ["TASK-007"],
+  "acceptanceCriteria": [
+    "Replace 'grid grid-cols-1 md:grid-cols-2 gap-8' with 'grid grid-cols-1 gap-12'",
+    "Single column layout on all screen sizes (mobile, tablet, desktop)",
+    "No overlap between SINGLE PLAYER and MULTIPLAYER cards",
+    "Increased gap (gap-12 = 3rem) for better visual separation",
+    "Cards maintain proper glassmorphism styling",
+    "Animations still work (float, card variants)",
+    "Cards remain centered on page",
+    "Responsive design maintains consistent spacing"
+  ],
+  "technicalNotes": [
+    "Remove md:grid-cols-2 breakpoint entirely",
+    "Increase gap from gap-8 to gap-12 for better separation",
+    "Test on mobile, tablet, and desktop to verify no overlap",
+    "Verify page remains centered and balanced",
+    "Check that hero section and how-to-play section spacing is consistent"
+  ],
+  "files": [
+    "src/pages/HomePage.tsx"
+  ],
+  "testingStrategy": "Visual regression tests on all viewport sizes. Verify no overlap at any breakpoint. Test animation timing.",
+  "rollbackPlan": "Restore grid-cols-2 if single column creates excessive vertical scrolling issues"
+}

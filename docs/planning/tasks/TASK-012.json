@@ -1,0 +1,24 @@
+{
+  "id": "TASK-012",
+  "title": "Compose App layout with two-panel structure",
+  "description": "Create the main App component with side-by-side layout: left panel (flat boards), right panel (3D view), and game info.",
+  "feature_ref": "F002,F003,F006",
+  "task_type": "frontend",
+  "complexity": {
+    "score": 3,
+    "factors": {
+      "files_affected": 1,
+      "estimated_lines": 50,
+      "new_dependencies": 0,
+      "risk_flags": []
+    }
+  },
+  "dependencies": ["TASK-007", "TASK-009", "TASK-011"],
+  "acceptance_criteria": [
+    "Two-panel layout: left = FlatBoards, right = Scene3D",
+    "GameInfo displayed prominently",
+    "Responsive layout for different screen sizes",
+    "Clean visual separation between panels"
+  ],
+  "suggested_agent": "frontend:developer"
+}

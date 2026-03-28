@@ -1,0 +1,40 @@
+{
+  "id": "TASK-007",
+  "title": "Create Accordion Component for How To Play Section",
+  "type": "frontend",
+  "description": "Build a reusable Accordion component using Framer Motion for smooth expand/collapse animations. Component will support collapsed-by-default state and programmatic control via button trigger.",
+  "priority": "medium",
+  "complexity": 6,
+  "estimatedHours": 6,
+  "sprint": 2,
+  "status": "pending",
+  "dependencies": ["TASK-006"],
+  "blocks": ["TASK-008"],
+  "acceptanceCriteria": [
+    "Create Accordion.tsx component in src/components/ui/",
+    "Implements expand/collapse functionality with Framer Motion",
+    "Supports collapsed-by-default prop",
+    "Smooth height animation using AnimatePresence",
+    "Accepts trigger button as prop or uses default",
+    "Glassmorphism styling consistent with design system",
+    "Accessible keyboard navigation (Enter/Space to toggle)",
+    "ARIA attributes for screen readers (aria-expanded, aria-controls)",
+    "TypeScript interface with proper typing",
+    "Exports from src/components/ui/index.ts"
+  ],
+  "technicalNotes": [
+    "Use Framer Motion's motion.div with initial, animate, exit variants",
+    "Implement auto height animation with overflow: hidden",
+    "Consider using useRef for measuring content height",
+    "Add transition easing that matches existing animations",
+    "Follow existing component patterns (NeonButton, GlassCard)",
+    "Support controlled and uncontrolled modes",
+    "Add chevron/arrow icon rotation animation"
+  ],
+  "files": [
+    "src/components/ui/Accordion.tsx",
+    "src/components/ui/index.ts"
+  ],
+  "testingStrategy": "Unit tests: verify expand/collapse logic. Integration tests: test with different content heights. Accessibility tests: keyboard navigation and screen readers. Animation tests: verify smooth transitions.",
+  "rollbackPlan": "Remove component if animation performance issues arise"
+}

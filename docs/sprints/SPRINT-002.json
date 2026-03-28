@@ -1,0 +1,29 @@
+{
+  "id": "SPRINT-002",
+  "name": "Polish & UX Enhancement",
+  "goal": "Add accordion feature for better content organization in How To Play section",
+  "tasks": [
+    "TASK-007",
+    "TASK-008"
+  ],
+  "estimated_complexity": 10,
+  "estimated_hours": 10,
+  "dependencies": {
+    "sprints": ["SPRINT-001"]
+  },
+  "quality_gates": [
+    "Accordion component is reusable",
+    "How To Play collapsed by default",
+    "Smooth expand/collapse animation",
+    "Keyboard navigation works (Enter/Space)",
+    "ARIA attributes present for accessibility",
+    "No layout shift on animation"
+  ],
+  "parallelization": {
+    "track_1": {
+      "name": "Accordion Feature",
+      "tasks": ["TASK-007", "TASK-008"],
+      "sequential": true
+    }
+  }
+}

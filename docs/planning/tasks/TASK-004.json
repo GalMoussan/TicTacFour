@@ -1,0 +1,35 @@
+{
+  "id": "TASK-004",
+  "title": "Apply Consistent Spacing to MultiplayerGameInfo Component Layout",
+  "type": "frontend",
+  "description": "Refactor MultiplayerGameInfo component to use design system spacing variables. Ensure consistent layout organization across all multiplayer game states (waiting, playing, spectating, disconnected).",
+  "priority": "medium",
+  "complexity": 5,
+  "estimatedHours": 5,
+  "sprint": 1,
+  "status": "pending",
+  "dependencies": ["TASK-002"],
+  "blocks": [],
+  "acceptanceCriteria": [
+    "Replace hardcoded spacing with CSS variables throughout component",
+    "Consistent padding in all game state cards (opponent disconnected, turn indicator, game over)",
+    "Proper alignment of status badges, player indicators, and buttons",
+    "Responsive spacing for mobile and desktop",
+    "Disconnection warning maintains visual prominence with new spacing",
+    "Spectator mode layout uses consistent spacing",
+    "All animation states (victory, defeat, draw) display correctly",
+    "No layout shifts between states",
+    "Turn indicator arrow animation works with new spacing"
+  ],
+  "technicalNotes": [
+    "Multiple states to handle: waiting, spectating, victory, defeat, draw, opponent disconnected",
+    "Pay attention to nested GlassCard components and spacing hierarchy",
+    "Test all combinations of playerRole and connection states",
+    "Ensure StatusBadge component uses consistent spacing patterns"
+  ],
+  "files": [
+    "src/components/MultiplayerGameInfo.tsx"
+  ],
+  "testingStrategy": "Visual tests for all 7+ game states. Responsive tests. Animation timing verification. Test state transitions for smooth layout changes.",
+  "rollbackPlan": "Revert to previous spacing values if any state breaks visually"
+}

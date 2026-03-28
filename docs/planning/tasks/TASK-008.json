@@ -1,0 +1,39 @@
+{
+  "id": "TASK-008",
+  "title": "Refactor HomePage How To Play Section to Use Accordion",
+  "type": "frontend",
+  "description": "Convert the existing How To Play section on HomePage to use the new Accordion component. Add a 'Show Rules' button that controls the accordion, with content collapsed by default.",
+  "priority": "medium",
+  "complexity": 4,
+  "estimatedHours": 4,
+  "sprint": 2,
+  "status": "pending",
+  "dependencies": ["TASK-007"],
+  "blocks": [],
+  "acceptanceCriteria": [
+    "How To Play section uses Accordion component",
+    "Content is collapsed by default on page load",
+    "NeonButton with 'SHOW RULES' / 'HIDE RULES' text controls accordion",
+    "Button text updates based on accordion state (open/closed)",
+    "Smooth animation when expanding/collapsing",
+    "All existing content (4 rule sections) displays correctly when expanded",
+    "Glassmorphism styling maintained",
+    "Button uses appropriate neon color (purple to match section title)",
+    "Responsive layout works on all screen sizes",
+    "Animation doesn't cause layout shift in page"
+  ],
+  "technicalNotes": [
+    "Wrap existing GlassCard content with Accordion component",
+    "Add state to track accordion open/closed",
+    "Add NeonButton above or inside accordion header",
+    "Update button text dynamically: 'SHOW RULES' when closed, 'HIDE RULES' when open",
+    "Consider adding icon to button (chevron down/up)",
+    "Ensure section title ('HOW TO PLAY') remains visible when collapsed",
+    "Test with page scroll position to ensure smooth UX"
+  ],
+  "files": [
+    "src/pages/HomePage.tsx"
+  ],
+  "testingStrategy": "Integration tests: verify accordion integration. Visual tests: verify styling consistency. User interaction tests: click button and verify smooth animation. Responsive tests: test on multiple viewports.",
+  "rollbackPlan": "Revert to static content display if accordion causes UX issues"
+}

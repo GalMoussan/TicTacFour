@@ -1,0 +1,24 @@
+{
+  "id": "TASK-011",
+  "title": "Build GameInfo component",
+  "description": "Create the game info panel showing current player, winner banner, and reset button.",
+  "feature_ref": "F006",
+  "task_type": "frontend",
+  "complexity": {
+    "score": 3,
+    "factors": {
+      "files_affected": 1,
+      "estimated_lines": 60,
+      "new_dependencies": 0,
+      "risk_flags": []
+    }
+  },
+  "dependencies": ["TASK-005", "TASK-002"],
+  "acceptance_criteria": [
+    "Displays current player (X or O)",
+    "Shows winner banner when game is won",
+    "Shows draw message when board is full",
+    "Reset button clears game and starts fresh"
+  ],
+  "suggested_agent": "frontend:developer"
+}
