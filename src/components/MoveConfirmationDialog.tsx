@@ -12,6 +12,8 @@ interface MoveConfirmationDialogProps {
   currentPlayer: 'X' | 'O';
   onConfirm: () => void;
   onCancel: () => void;
+  clickX?: number;
+  clickY?: number;
 }
 
 export function MoveConfirmationDialog({
@@ -19,8 +21,36 @@ export function MoveConfirmationDialog({
   currentPlayer,
   onConfirm,
   onCancel,
+  clickX,
+  clickY,
 }: MoveConfirmationDialogProps) {
   if (!pendingMove) return null;
+
+  // Calculate popup position near cursor with edge protection
+  const calculatePosition = () => {
+    const offset = 10; // Offset from cursor
+    const popupWidth = 380; // Approximate max-w-md width
+    const popupHeight = 200; // Approximate popup height
+
+    let x = (clickX ?? window.innerWidth / 2) + offset;
+    let y = (clickY ?? window.innerHeight / 2) + offset;
+
+    // Edge protection: adjust if popup would overflow
+    if (x + popupWidth > window.innerWidth) {
+      x = (clickX ?? window.innerWidth / 2) - popupWidth - offset;
+    }
+    if (y + popupHeight > window.innerHeight) {
+      y = (clickY ?? window.innerHeight / 2) - popupHeight - offset;
+    }
+
+    // Ensure popup stays on screen even if cursor is at edge
+    x = Math.max(16, Math.min(x, window.innerWidth - popupWidth - 16));
+    y = Math.max(16, Math.min(y, window.innerHeight - popupHeight - 16));
+
+    return { x, y };
+  };
+
+  const { x, y } = calculatePosition();
 
   return (
     <AnimatePresence>
@@ -28,14 +58,19 @@ export function MoveConfirmationDialog({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm"
+        className="fixed inset-0 z-[100]"
         onClick={onCancel}
       >
         <motion.div
-          initial={{ scale: 0.9, y: 20 }}
-          animate={{ scale: 1, y: 0 }}
-          exit={{ scale: 0.9, y: 20 }}
-          className="glass border-2 border-neon-cyan/30 rounded-xl p-6 max-w-md mx-4 shadow-glow-cyan"
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.9, opacity: 0 }}
+          style={{
+            position: 'fixed',
+            left: `${x}px`,
+            top: `${y}px`,
+          }}
+          className="glass border-2 border-neon-cyan/30 rounded-xl p-6 w-[380px] shadow-glow-cyan"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}

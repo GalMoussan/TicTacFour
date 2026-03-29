@@ -13,7 +13,7 @@ interface PendingMove {
 interface FlatBoardProps {
   layer: number;
   board: Board;
-  onCellClick: (z: number, y: number, x: number) => void;
+  onCellClick: (z: number, y: number, x: number, clientX: number, clientY: number) => void;
   winningLine: Position[] | null;
   isGameOver: boolean;
   pendingMove?: PendingMove | null;
@@ -134,7 +134,7 @@ export function FlatBoard({ layer, board, onCellClick, winningLine, isGameOver, 
   // Check if there is any pending move (blocks all other cells)
   const hasPendingMove = pendingMove !== null;
 
-  const handleCellClick = (y: number, x: number, cell: 'X' | 'O' | null) => {
+  const handleCellClick = (y: number, x: number, cell: 'X' | 'O' | null, event: React.MouseEvent) => {
     if (cell === null && !isGameOver && currentPlayer && !hasPendingMove) {
       const cellKey = `${layer}-${y}-${x}`;
 
@@ -152,7 +152,7 @@ export function FlatBoard({ layer, board, onCellClick, winningLine, isGameOver, 
         });
       }, 500);
 
-      onCellClick(layer, y, x);
+      onCellClick(layer, y, x, event.clientX, event.clientY);
     }
   };
 
@@ -183,7 +183,7 @@ export function FlatBoard({ layer, board, onCellClick, winningLine, isGameOver, 
                   aria-label={getCellAriaLabel(layer, y, x, cell, isWinner, isGameOver)}
                   aria-pressed={cell !== null}
                   aria-disabled={!isClickable}
-                  onClick={() => handleCellClick(y, x, cell)}
+                  onClick={(e) => handleCellClick(y, x, cell, e)}
                   disabled={!isClickable}
                   className={getCellClassName(cell, isWinner, isGameOver)}
                   whileHover={isClickable ? { scale: 1.1 } : {}}

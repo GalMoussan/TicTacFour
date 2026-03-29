@@ -3,7 +3,7 @@ import { FlatBoard } from './FlatBoard';
 import { GlassCard } from './ui';
 
 interface FlatBoardsProps {
-  onCellClick?: (z: number, y: number, x: number) => void;
+  onCellClick?: (z: number, y: number, x: number, clientX: number, clientY: number) => void;
 }
 
 function getLayerColor(index: number): string {
@@ -22,7 +22,13 @@ export function FlatBoards({ onCellClick }: FlatBoardsProps) {
   const isGameOver = useGameStore((state) => state.isGameOver);
   const makeMove = useGameStore((state) => state.makeMove);
 
-  const handleCellClick = onCellClick || makeMove;
+  const handleCellClick = (z: number, y: number, x: number, clientX: number, clientY: number) => {
+    if (onCellClick) {
+      onCellClick(z, y, x, clientX, clientY);
+    } else {
+      makeMove(z, y, x);
+    }
+  };
 
   return (
     <GlassCard glowColor="cyan" className="p-0 relative border border-neon-cyan/20 overflow-hidden">

@@ -16,6 +16,8 @@ interface PendingMove {
   layer: number;
   row: number;
   col: number;
+  clickX: number;
+  clickY: number;
 }
 
 /**
@@ -27,7 +29,7 @@ function SingleLayerPanel({
   pendingMove,
 }: {
   layer: number;
-  onCellClick: (z: number, y: number, x: number) => void;
+  onCellClick: (z: number, y: number, x: number, clientX: number, clientY: number) => void;
   pendingMove: PendingMove | null;
 }) {
   const board = useGameStore((state) => state.board);
@@ -292,7 +294,7 @@ function WaitingScreen({ roomId }: { roomId: string }) {
 function GameContent({
   roomId,
   playerRole,
-  localPlayerId,
+  localPlayerId: _localPlayerId,
   roomState,
   sendMove,
   requestRematch,
@@ -309,7 +311,7 @@ function GameContent({
     currentPlayer,
     winner,
     isGameOver,
-    opponentConnected,
+    opponentConnected: _opponentConnected,
     setMultiplayerMode,
     exitMultiplayer,
   } = useGameStore();
@@ -356,7 +358,7 @@ function GameContent({
 
   // Handle cell clicks in multiplayer mode - sets pending move instead of sending immediately
   // Wrapped in useCallback to prevent Scene3D from re-rendering constantly
-  const handleCellClick = useCallback((z: number, y: number, x: number) => {
+  const handleCellClick = useCallback((z: number, y: number, x: number, clickX: number, clickY: number) => {
     // Only allow moves if it is the player's turn and they are not a spectator
     if (playerRole === 'spectator' || playerRole === null) {
       return;
@@ -367,7 +369,7 @@ function GameContent({
     }
 
     // Set pending move for confirmation
-    setPendingMove({ layer: z, row: y, col: x });
+    setPendingMove({ layer: z, row: y, col: x, clickX, clickY });
   }, [playerRole, isMyTurn]);
 
   // Handle move confirmation - only sends to server after user confirms
@@ -549,6 +551,8 @@ function GameContent({
           currentPlayer={currentPlayer}
           onConfirm={handleConfirmMove}
           onCancel={handleCancelMove}
+          clickX={pendingMove?.clickX}
+          clickY={pendingMove?.clickY}
         />
       )}
     </motion.div>

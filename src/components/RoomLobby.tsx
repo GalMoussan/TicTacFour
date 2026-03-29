@@ -5,7 +5,6 @@ import { generateRoomId, validateRoomId } from '../multiplayer/utils';
 import {
   GlassCard,
   NeonButton,
-  HolographicText,
   CyberInput,
   LoadingSpinner
 } from './ui';

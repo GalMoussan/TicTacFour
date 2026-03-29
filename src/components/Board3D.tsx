@@ -12,7 +12,7 @@ interface PendingMove {
 }
 
 interface Board3DProps {
-  onCellClick?: (z: number, y: number, x: number) => void;
+  onCellClick?: (z: number, y: number, x: number, clientX: number, clientY: number) => void;
   pendingMove?: PendingMove | null;
 }
 
@@ -36,8 +36,14 @@ function Board3DContent({ onCellClick, pendingMove = null }: Board3DProps) {
   // Check if there is any pending move (blocks all other cells)
   const hasPendingMove = pendingMove !== null;
 
-  // Use custom onCellClick handler if provided, otherwise use store's makeMove
-  const handleCellClick = onCellClick || makeMove;
+  // Wrapper function to handle different signatures
+  const handleCellClick = (z: number, y: number, x: number, clientX: number, clientY: number) => {
+    if (onCellClick) {
+      onCellClick(z, y, x, clientX, clientY);
+    } else {
+      makeMove(z, y, x);
+    }
+  };
 
   // Spacing between cells
   const spacing = 1.2;
@@ -99,7 +105,12 @@ function Board3DContent({ onCellClick, pendingMove = null }: Board3DProps) {
                         color: currentPlayer === 'X' ? '#00fff5' : '#ff00ff',
                       }]);
 
-                      handleCellClick(z, y, x);
+                      // Extract mouse coordinates from native event
+                      const nativeEvent = e.nativeEvent as MouseEvent;
+                      const clientX = nativeEvent.clientX;
+                      const clientY = nativeEvent.clientY;
+
+                      handleCellClick(z, y, x, clientX, clientY);
                     }}
                   >
                     <boxGeometry args={[0.8, 0.8, 0.8]} />

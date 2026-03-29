@@ -13,6 +13,8 @@ interface PendingMove {
   layer: number;
   row: number;
   col: number;
+  clickX: number;
+  clickY: number;
 }
 
 /**
@@ -24,7 +26,7 @@ function SingleLayerPanel({
   pendingMove,
 }: {
   layer: number;
-  onCellClick: (z: number, y: number, x: number) => void;
+  onCellClick: (z: number, y: number, x: number, clientX: number, clientY: number) => void;
   pendingMove: PendingMove | null;
 }) {
   const board = useGameStore((state) => state.board);
@@ -78,8 +80,8 @@ export function SinglePlayerPage() {
   const { resetGame, makeMove, currentPlayer } = useGameStore();
   const [pendingMove, setPendingMove] = useState<PendingMove | null>(null);
 
-  const handleCellClick = (layer: number, row: number, col: number) => {
-    setPendingMove({ layer, row, col });
+  const handleCellClick = (layer: number, row: number, col: number, clickX: number, clickY: number) => {
+    setPendingMove({ layer, row, col, clickX, clickY });
   };
 
   const handleConfirmMove = () => {
@@ -191,6 +193,8 @@ export function SinglePlayerPage() {
           currentPlayer={currentPlayer}
           onConfirm={handleConfirmMove}
           onCancel={handleCancelMove}
+          clickX={pendingMove?.clickX}
+          clickY={pendingMove?.clickY}
         />
       )}
     </motion.div>

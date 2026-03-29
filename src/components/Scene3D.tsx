@@ -14,7 +14,7 @@ interface PendingMove {
 }
 
 interface Scene3DProps {
-  onCellClick?: (z: number, y: number, x: number) => void;
+  onCellClick?: (z: number, y: number, x: number, clientX: number, clientY: number) => void;
   pendingMove?: PendingMove | null;
 }
 
@@ -137,10 +137,10 @@ export const Scene3D = React.memo(Scene3DContent, (prev, next) => {
   const onCellClickSame = prev.onCellClick === next.onCellClick;
 
   // Handle null pendingMove cases
-  if (prev.pendingMove === null && next.pendingMove === null) {
+  if (!prev.pendingMove && !next.pendingMove) {
     return onCellClickSame; // No change
   }
-  if (prev.pendingMove === null || next.pendingMove === null) {
+  if (!prev.pendingMove || !next.pendingMove) {
     return false; // Changed from null to value or vice versa
   }
 

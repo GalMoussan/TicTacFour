@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { GlassCard, NeonButton, HolographicText, StatusBadge } from './ui';
+import { NeonButton } from './ui';
 import type { PlayerRole } from '../multiplayer/types';
 
 export interface MultiplayerGameInfoProps {
@@ -14,7 +14,7 @@ export interface MultiplayerGameInfoProps {
 }
 
 export function MultiplayerGameInfo({
-  currentPlayer,
+  currentPlayer: _currentPlayer,
   winner,
   isDraw,
   isMyTurn,

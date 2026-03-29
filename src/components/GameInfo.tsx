@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { GlassCard, NeonButton, HolographicText } from './ui';
+import { HolographicText } from './ui';
 import { useGameStore } from '../store/gameStore';
 
 export function GameInfo() {
